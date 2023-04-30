@@ -1,10 +1,13 @@
 #pragma once
 
+#pragma once
 #include <iostream>
+
+using namespace std;
 
 class Money
 {
-    long rubles;
+	long rubles;
 	int kopecks;
 public:
 	Money();
@@ -16,9 +19,9 @@ public:
 	Money& operator = (const Money&);
 	Money& operator --();
 	Money& operator --(int);
-	friend ostream& operator << (ostream& out, const Money&);
-	friend istream& operator >> (istream& in, Money&);
+	friend std::ostream& operator << (std::ostream& out, const Money&);
+	friend std::istream& operator >> (std::istream& in, Money&);
 	bool operator == (const Money&);
 	bool operator != (const Money&);
-	~Money();
+	~Money() {};
 };

@@ -1,7 +1,5 @@
-#include <iostream>
-#include <fstream>
-#include <cmath>
 #include "Money.h"
+#include <iostream>
 
 using namespace std;
 Money::Money()
@@ -22,7 +20,7 @@ Money::Money(long r, int k)
 		kopecks = k % 100;
 	}
 }
-Money::Money(const Money&m)
+Money::Money(const Money& m)
 {
 	rubles = m.rubles;
 	kopecks = m.kopecks;
@@ -43,24 +41,25 @@ void Money::SetMoney(long r, int k)
 	kopecks = k;
 }
 
-Money& Money::operator = (const Money&m)
+Money& Money::operator = (const Money& m)
 {
 	rubles = m.rubles;
 	kopecks = m.kopecks;
+	return *this;
 }
 Money& Money::operator -- ()
 {
-	rubles -= 1;
+	kopecks = kopecks - 1;
+	return *this;
 }
 Money& Money::operator--(int)
 {
-	Money money = *this;
-	money.kopecks = money.kopecks - 1;
-	return money;
+	kopecks = kopecks - 1;
+	return *this;
 }
 
 
-ostream& operator << (ostream& out, const Money&p)
+ostream& operator << (ostream& out, const Money& p)
 {
 	return(out << p.rubles << ", " << p.kopecks);
 }
@@ -93,7 +92,7 @@ bool Money::operator==(const Money& m)
 {
 	if (this->rubles == m.rubles)
 	{
-		if (this->kopecks == m.rubles)
+		if (this->kopecks == m.kopecks)
 		{
 			return 1;
 		}
@@ -107,4 +106,3 @@ bool Money::operator==(const Money& m)
 		return 0;
 	}
 }
-
